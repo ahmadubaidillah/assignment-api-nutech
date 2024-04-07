@@ -1,0 +1,12 @@
+#ignoring installed packages
+node_modules
+.vscode
+
+#ignoring installed dependency configuration
+package-lock.json
+credentials
+src/test
+yarn.lock
+*.env
+
+test
