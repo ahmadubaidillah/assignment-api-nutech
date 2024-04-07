@@ -1,72 +1,72 @@
 const Model = (sequelize, DataTypes) => {
   const Banners = sequelize.define(
-    'Banners',
+    "Banners",
     {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER(11)
+        type: DataTypes.INTEGER(11),
       },
       uid: {
         allowNull: false,
-        field: 'uid',
+        field: "uid",
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        unique: true
+        unique: true,
       },
       bannerName: {
         allowNull: false,
-        field: 'banner_name',
-        type: DataTypes.STRING(16)
+        field: "banner_name",
+        type: DataTypes.TEXT,
       },
       bannerImage: {
         allowNull: false,
-        field: 'banner_image',
-        type: DataTypes.TEXT
+        field: "banner_image",
+        type: DataTypes.TEXT,
       },
       description: {
         allowNull: false,
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
       },
       createdAt: {
         allowNull: false,
         defaultValue: DataTypes.NOW,
-        field: 'created_at',
-        type: DataTypes.DATE
+        field: "created_at",
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
         defaultValue: DataTypes.NOW,
-        field: 'updated_at',
-        type: DataTypes.DATE
+        field: "updated_at",
+        type: DataTypes.DATE,
       },
       deleted: {
         allowNull: false,
         defaultValue: 0,
-        type: DataTypes.INTEGER(1)
-      }
+        type: DataTypes.INTEGER(1),
+      },
     },
     {
-      tableName: 'banners',
+      tableName: "banners",
       timestamps: false,
       defaultScope: {
         where: {
-          deleted: 0
+          deleted: 0,
         },
-        attributes: { exclude: ['deleted', 'type'] }
+        attributes: { exclude: ["deleted", "type"] },
       },
       scopes: {
         all: {
-          attributes: { exclude: ['deleted'] }
-        }
-      }
+          attributes: { exclude: ["deleted"] },
+        },
+      },
     }
-  )
+  );
 
-  Banners.associate = function (models) {}
+  Banners.associate = function (models) {};
 
-  return Banners
-}
+  return Banners;
+};
 
-export default Model
+export default Model;

@@ -8,17 +8,10 @@ export async function up(queryInterface, Sequelize) {
       primaryKey: true,
       type: Sequelize.INTEGER(11),
     },
-    uid: {
-      allowNull: false,
-      field: "uid",
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      unique: true,
-    },
     bannerName: {
       allowNull: false,
       field: "banner_name",
-      type: Sequelize.STRING(16),
+      type: Sequelize.TEXT,
     },
     bannerImage: {
       allowNull: false,
