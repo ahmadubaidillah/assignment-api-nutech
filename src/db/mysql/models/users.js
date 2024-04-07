@@ -10,31 +10,24 @@ const Model = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER(11)
       },
-      uid: {
-        allowNull: false,
-        field: 'uid',
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        unique: true
-      },
       firstName: {
         allowNull: false,
         field: 'first_name',
-        type: DataTypes.STRING(16)
+        type: DataTypes.TEXT
       },
       lastName: {
         allowNull: false,
         field: 'last_name',
-        type: DataTypes.STRING(16)
+        type: DataTypes.TEXT
       },
       email: {
         allowNull: false,
-        type: DataTypes.STRING(100),
+        type: DataTypes.TEXT,
         unique: true
       },
       password: {
         allowNull: false,
-        type: DataTypes.STRING(255),
+        type: DataTypes.TEXT,
         set (value) {
           this.setDataValue('password', hashPassword(value))
         }
@@ -42,7 +35,7 @@ const Model = (sequelize, DataTypes) => {
       profileImage: {
         allowNull: true,
         field: 'profile_image',
-        type: DataTypes.STRING(255)
+        type: DataTypes.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -84,19 +77,19 @@ const Model = (sequelize, DataTypes) => {
 
   Users.associate = function (models) {
     Users.hasMany(models.Sessions, {
-      foreignKey: 'userUid',
+      foreignKey: 'userId',
       as: 'sessions',
-      sourceKey: 'uid'
+      sourceKey: 'id'
     })
     Users.hasOne(models.Balance, {
-      foreignKey: 'userUid',
+      foreignKey: 'userId',
       as: 'balance',
-      sourceKey: 'uid'
+      sourceKey: 'id'
     })
     Users.hasMany(models.Transaction, {
-      foreignKey: 'userUid',
+      foreignKey: 'userId',
       as: 'service',
-      sourceKey: 'uid'
+      sourceKey: 'id'
     })
   }
 

@@ -8,27 +8,20 @@ export async function up(queryInterface, Sequelize) {
       primaryKey: true,
       type: Sequelize.INTEGER(11),
     },
-    uid: {
+    userId: {
       allowNull: false,
-      field: "uid",
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      unique: true,
-    },
-    userUid: {
-      allowNull: false,
-      field: "user_uid",
-      type: Sequelize.UUID,
+      field: "user_id",
+      type: Sequelize.INTEGER(11),
       references: {
         model: "users",
-        key: "uid",
+        key: "id",
       },
       onDelete: "RESTRICT",
       onUpdate: "CASCADE",
     },
     token: {
       allowNull: false,
-      type: Sequelize.STRING(100),
+      type: Sequelize.TEXT,
     },
     valid: {
       allowNull: false,

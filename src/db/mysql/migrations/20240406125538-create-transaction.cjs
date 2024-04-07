@@ -8,20 +8,13 @@ export async function up(queryInterface, Sequelize) {
       primaryKey: true,
       type: Sequelize.INTEGER(11),
     },
-    uid: {
+    userId: {
       allowNull: false,
-      field: "uid",
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      unique: true,
-    },
-    userUid: {
-      allowNull: false,
-      field: "user_uid",
-      type: Sequelize.UUID,
+      field: "user_id",
+      type: Sequelize.INTEGER(11),
       references: {
         model: "users",
-        key: "uid",
+        key: "id",
       },
       onDelete: "RESTRICT",
       onUpdate: "CASCADE",
@@ -29,7 +22,7 @@ export async function up(queryInterface, Sequelize) {
     invoiceNumber: {
       allowNull: false,
       field: "invoice_number",
-      type: Sequelize.STRING(20),
+      type: Sequelize.TEXT,
       defaultValue: 0,
     },
     transactionType: {

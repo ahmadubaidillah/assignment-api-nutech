@@ -16,10 +16,6 @@ const config = {
   db_user: process.env.DB_USER || 'root',
   db_pass: process.env.DB_PASS || '',
 
-  rd_server: process.env.RD_SERVER || 'localhost',
-  rd_port: process.env.RD_PORT || 6379,
-  rd_pass: process.env.RD_PASS || '',
-
   bearer_token: process.env.BEARER_TOKEN || 'token',
   salt_pass: process.env.SALT_PASS || 'salt_pass',
   admin_panel_version: process.env.ADMIN_PANEL_VERSION || ['1.0.0'],

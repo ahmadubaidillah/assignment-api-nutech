@@ -19,7 +19,7 @@ const SessionValidator = (roles = [], route) =>
     }
 
     const decodeData = jwt.decode(accessToken)
-    if (!decodeData || !decodeData?.userUid || !decodeData?.sessionUid) {
+    if (!decodeData || !decodeData?.userId || !decodeData?.sessionId) {
       return res.status(401).send(
         response({
           status: 108,
@@ -30,8 +30,8 @@ const SessionValidator = (roles = [], route) =>
 
     const userSession = await Sessions.findOne({
       where: {
-        uid: decodeData.sessionUid,
-        userUid: decodeData.userUid,
+        id: decodeData.sessionId,
+        userId: decodeData.userId,
         token: refreshToken,
         valid: 1
       },
@@ -47,10 +47,10 @@ const SessionValidator = (roles = [], route) =>
     }
 
     const userData = await Users.findOne({
-      where: { uid: decodeData.userUid }
+      where: { id: decodeData.userId }
     })
 
-    req.userUid = decodeData.userUid
+    req.userId = decodeData.userId
     req.user = userData
     req.session = userSession
     next()

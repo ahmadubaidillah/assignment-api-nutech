@@ -10,23 +10,16 @@ const Model = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER(11)
       },
-      uid: {
+      userId: {
         allowNull: false,
-        field: 'uid',
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        unique: true
-      },
-      userUid: {
-        allowNull: false,
-        field: 'user_uid',
-        type: DataTypes.UUID,
+        field: 'user_id',
+        type: DataTypes.INTEGER(11),
         unique: true
       },
       invoiceNumber: {
         allowNull: false,
         field: 'invoice_number',
-        type: DataTypes.STRING(20),
+        type: DataTypes.TEXT,
         defaultValue: 0
       },
       transactionType: {
@@ -89,9 +82,9 @@ const Model = (sequelize, DataTypes) => {
 
   Transaction.associate = function (models) {
     Transaction.belongsTo(models.Users, {
-      foreignKey: 'userUid',
+      foreignKey: 'userId',
       as: 'user',
-      targetKey: 'uid'
+      targetKey: 'id'
     })
   }
 

@@ -5,11 +5,11 @@ const { Balance, Transaction } = Models
 
 export default {
   getBalance: catchAsync(async (req, res) => {
-    const userUid = req.userUid
+    const userId = req.userId
 
     const [balance, created] = await Balance.findOrCreate({
-      where: { userUid },
-      defaults: { userUid }
+      where: { userId },
+      defaults: { userId }
     })
 
     return res.status(200).json({
@@ -22,7 +22,7 @@ export default {
   }),
 
   topUp: catchAsync(async (req, res) => {
-    const userUid = req.userUid
+    const userId = req.userId
     const { top_up_amount } = req.body
 
     if (!Number.isInteger(top_up_amount) || top_up_amount <= 0) {
@@ -36,8 +36,8 @@ export default {
     }
 
     const [balance, created] = await Balance.findOrCreate({
-      where: { userUid },
-      defaults: { userUid }
+      where: { userId },
+      defaults: { userId }
     })
 
     const total = balance.balance + top_up_amount
@@ -48,7 +48,7 @@ export default {
     const data = { balance: balance.balance }
 
     await Transaction.create({
-      userUid: userUid,
+      userId: userId,
       transactionType: 'TOPUP',
       totalAmount: top_up_amount,
       description: 'Top Up balance'

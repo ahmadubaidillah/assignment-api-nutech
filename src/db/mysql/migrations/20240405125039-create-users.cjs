@@ -8,31 +8,24 @@ export async function up(queryInterface, Sequelize) {
       primaryKey: true,
       type: Sequelize.INTEGER(11),
     },
-    uid: {
-      allowNull: false,
-      field: "uid",
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      unique: true,
-    },
     firstName: {
       allowNull: false,
       field: "first_name",
-      type: Sequelize.STRING(16),
+      type: Sequelize.TEXT,
     },
     lastName: {
       allowNull: false,
       field: "last_name",
-      type: Sequelize.STRING(16),
+      type: Sequelize.TEXT,
     },
     email: {
       allowNull: false,
-      type: Sequelize.STRING(100),
+      type: Sequelize.TEXT,
       unique: true,
     },
     password: {
       allowNull: false,
-      type: Sequelize.STRING(255),
+      type: Sequelize.TEXT,
     },
     profileImage: {
       allowNull: true,

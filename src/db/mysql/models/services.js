@@ -8,22 +8,15 @@ const Model = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER(11)
       },
-      uid: {
-        allowNull: false,
-        field: 'uid',
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        unique: true
-      },
       serviceCode: {
         allowNull: false,
         field: 'service_code',
-        type: DataTypes.STRING(16)
+        type: DataTypes.TEXT
       },
       serviceName: {
         allowNull: false,
         field: 'service_name',
-        type: DataTypes.STRING(16)
+        type: DataTypes.TEXT
       },
       serviceIcon: {
         allowNull: false,
@@ -33,7 +26,7 @@ const Model = (sequelize, DataTypes) => {
       serviceTarif: {
         allowNull: false,
         field: 'service_tarif',
-        type: DataTypes.STRING(16)
+        type: DataTypes.TEXT
       },
       createdAt: {
         allowNull: false,

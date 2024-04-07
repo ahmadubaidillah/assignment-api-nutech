@@ -5,7 +5,7 @@ const { Transaction, Balance, Services } = Models
 
 export default {
   transaction: catchAsync(async (req, res) => {
-    const userUid = req.userUid
+    const userId = req.userId
     const { service_code } = req.body
 
     const service = await Services.findOne({
@@ -21,8 +21,8 @@ export default {
     }
 
     const [balance, created] = await Balance.findOrCreate({
-      where: { userUid },
-      defaults: { userUid }
+      where: { userId },
+      defaults: { userId }
     })
 
     if (balance.balance < service.serviceTarif) {
@@ -38,7 +38,7 @@ export default {
     await balance.update({ balance: total })
 
     const transaction = await Transaction.create({
-      userUid: userUid,
+      userId: userId,
       transactionType: 'PAYMENT',
       totalAmount: service.serviceTarif,
       description: service.serviceName
@@ -59,7 +59,7 @@ export default {
   }),
 
   getTransaction: catchAsync(async (req, res) => {
-    const userUid = req.userUid
+    const userId = req.userId
     let { limit, offset } = req.query
     limit = parseInt(limit)
     offset = parseInt(offset)
@@ -67,7 +67,7 @@ export default {
     const transactions = await Transaction.findAll({
       limit: limit,
       offset: offset,
-      where: { userUid }
+      where: { userId }
     })
 
     const records = transactions.map((transaction) => ({

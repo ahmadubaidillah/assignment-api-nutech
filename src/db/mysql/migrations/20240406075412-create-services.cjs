@@ -8,22 +8,15 @@ export async function up(queryInterface, Sequelize) {
       primaryKey: true,
       type: Sequelize.INTEGER(11),
     },
-    uid: {
-      allowNull: false,
-      field: "uid",
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      unique: true,
-    },
     serviceCode: {
       allowNull: false,
       field: "service_code",
-      type: Sequelize.STRING(16),
+      type: Sequelize.TEXT,
     },
     serviceName: {
       allowNull: false,
       field: "service_name",
-      type: Sequelize.STRING(16),
+      type: Sequelize.TEXT,
     },
     serviceIcon: {
       allowNull: false,
@@ -33,7 +26,7 @@ export async function up(queryInterface, Sequelize) {
     serviceTarif: {
       allowNull: false,
       field: "service_tarif",
-      type: Sequelize.STRING(16),
+      type: Sequelize.TEXT,
     },
     createdAt: {
       allowNull: false,

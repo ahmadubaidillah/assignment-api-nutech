@@ -6,9 +6,9 @@ const { Users } = Models
 
 export default {
   getProfile: catchAsync(async (req, res) => {
-    const userUid = req.userUid
+    const userId = req.userId
     const userData = await Users.findOne({
-      where: { uid: userUid }
+      where: { id: userId }
     })
 
     const data = {
@@ -24,11 +24,11 @@ export default {
   }),
 
   updateProfile: catchAsync(async (req, res) => {
-    const userUid = req.userUid
+    const userId = req.userId
     const { first_name, last_name } = req.body
 
     const userData = await Users.findOne({
-      where: { uid: userUid }
+      where: { id: userId }
     })
 
     const firstName = first_name
@@ -58,12 +58,12 @@ export default {
   }),
 
   uploadImageProfile: catchAsync(async (req, res) => {
-    const userUid = req.userUid
+    const userId = req.userId
     const images = await cloudinary.uploader.upload(req.file.path)
     const image = images.url
 
     const userData = await Users.findOne({
-      where: { uid: userUid }
+      where: { id: userId }
     })
 
     await userData.update({ profileImage: image })
